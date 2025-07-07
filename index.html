@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🐜 Ant Smasher Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="insect-arena-wrapper">
+      <header class="trophy-dashboard">
+        <h1>🐜 Ant Smasher</h1>
+        <div class="points-display-zone">
+          <div class="metric-card">
+            <span class="info-tag">Score:</span>
+            <span id="current-score">0</span>
+          </div>
+          <div class="metric-card">
+            <span class="info-tag">High Score:</span>
+            <span id="high-score">0</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="battlefield-canvas" id="game-area">
+        <div class="welcome-modal" id="game-overlay">
+          <div class="intro-panel">
+            <h2>🐜 Ant Smasher Game</h2>
+            <p>Click the ants to smash them and earn points!</p>
+            <div class="gameplay-guide">
+              <div class="guide-rule">
+                🖱️ Click ants to smash them (+1 point)
+              </div>
+              <div class="guide-rule">
+                ✨ Special insects give bonus points!
+              </div>
+              <div class="guide-rule">
+                🦗 Cricket: 3 pts | 🐛 Caterpillar: 5 pts
+              </div>
+              <div class="guide-rule">🕷️ Spider: 7 pts | 🪲 Beetle: 10 pts</div>
+              <div class="guide-rule">
+                ⏰ Insects disappear after 4-9 seconds
+              </div>
+              <div class="guide-rule">🚀 Game gets faster over time</div>
+              <div class="guide-rule">⌨️ Press Space to pause/resume</div>
+            </div>
+            <button
+              class="launch-trigger"
+              id="start-btn"
+              aria-label="Start Game"
+            >
+              Start Game
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-panel">
+        <button class="command-button" id="restart-btn">🔄 Restart</button>
+        <button class="command-button" id="pause-btn">⏸️ Pause</button>
+        <div class="performance-metrics">
+          <span>Time: <span id="game-time">0</span>s</span>
+          <span>Ants Missed: <span id="missed-ants">0</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div id="sound-container"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
