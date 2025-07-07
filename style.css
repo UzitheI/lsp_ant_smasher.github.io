@@ -938,11 +938,13 @@ body::before {
 @media (max-width: 768px) {
   .game-container {
     flex-direction: column;
+    height: 100vh;
   }
-  
+
   .stats-sidebar {
     width: 100%;
     height: auto;
+    padding: 15px;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -950,104 +952,202 @@ body::before {
     border-right: none;
     border-bottom: 1px solid rgba(0, 255, 240, 0.3);
   }
-  
+
   .game-logo {
-    order: 1;
-    flex: 1;
+    margin-bottom: 0;
+    margin-right: 20px;
   }
-  
+
+  .game-logo h1 {
+    font-size: 1.2rem;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+
   .score-section {
-    order: 2;
-    flex-direction: row;
-    gap: 15px;
-  }
-  
-  .game-stats {
-    order: 3;
-    flex-direction: row;
-    gap: 15px;
-  }
-  
-  .control-buttons {
-    order: 4;
     flex-direction: row;
     gap: 10px;
+    margin: 0;
   }
-  
-  .game-logo h1 {
+
+  .score-card {
+    padding: 10px 15px;
+    min-width: 80px;
+  }
+
+  .score-label {
+    font-size: 0.7rem;
+    margin-bottom: 5px;
+  }
+
+  .score-value {
     font-size: 1.5rem;
-    line-height: 1.2;
-  }
-  
-  .intro-panel {
-    margin: 20px;
-    padding: 25px 30px;
-  }
-  
-  .intro-panel h2 {
-    font-size: 2rem;
-  }
-  
-  .target-creature {
-    width: 40px;
-    height: 40px;
-    font-size: 30px;
   }
 
-  .defeat-panel {
-    margin: 20px;
-    padding: 30px 35px;
+  .game-stats {
+    flex-direction: row;
+    gap: 10px;
+    margin: 0;
   }
 
-  .defeat-panel h2 {
-    font-size: 2.2rem;
-  }
-
-  .defeat-buttons {
+  .stat-item {
+    padding: 8px 12px;
     flex-direction: column;
     align-items: center;
+    min-width: 60px;
   }
 
-  .defeat-btn {
-    min-width: 200px;
+  .stat-icon {
+    font-size: 1rem;
+    margin-bottom: 3px;
   }
-}
 
-@media (max-width: 1024px) {
-  .stats-sidebar {
-    width: 280px;
-    padding: 20px 15px;
-    gap: 20px;
+  .stat-label {
+    font-size: 0.6rem;
+    margin: 0;
   }
-  
-  .game-logo h1 {
+
+  .stat-value {
+    font-size: 0.9rem;
+    margin-top: 2px;
+  }
+
+  .control-buttons {
+    flex-direction: row;
+    gap: 8px;
+    margin: 0;
+  }
+
+  .control-btn {
+    padding: 8px 12px;
+    font-size: 0.7rem;
+    min-width: 70px;
+    min-height: 44px;
+  }
+
+  .game-arena {
+    flex: 1;
+    height: calc(100vh - 120px); 
+  }
+
+  .welcome-modal {
+    padding: 10px;
+  }
+
+  .intro-panel {
+    width: 95%;
+    max-width: none;
+    padding: 20px;
+    margin: 20px auto;
+  }
+
+  .intro-panel h2 {
     font-size: 1.8rem;
   }
-  
-  .score-value {
-    font-size: 2rem;
-  }
-  
-  .instruction-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .intro-panel {
-    max-width: 500px;
-    padding: 30px 35px;
+
+  .intro-panel p {
+    font-size: 0.9rem;
   }
 
-  .defeat-panel {
-    max-width: 500px;
-    padding: 40px 45px;
+  .instructions-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
-  .defeat-stats {
-    grid-template-columns: 1fr;
+  .guide-rule {
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+
+  .launch-trigger {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    min-height: 48px;
+  }
+
+  .target-creature {
+    font-size: 2.5rem !important;
+    padding: 8px;
+  }
+
+  .bonus-target {
+    font-size: 3rem !important;
+    padding: 10px;
   }
 }
 
-/* Utility Classes */
-.invisible {
-  display: none !important;
+@media (max-width: 480px) {
+  .stats-sidebar {
+    padding: 10px;
+  }
+
+  .game-logo h1 {
+    font-size: 1rem;
+  }
+
+  .score-card {
+    padding: 8px 10px;
+    min-width: 60px;
+  }
+
+  .score-value {
+    font-size: 1.2rem;
+  }
+
+  .stat-item {
+    padding: 6px 8px;
+    min-width: 50px;
+  }
+
+  .control-btn {
+    padding: 6px 8px;
+    font-size: 0.6rem;
+    min-width: 60px;
+  }
+
+  .intro-panel {
+    padding: 15px;
+  }
+
+  .intro-panel h2 {
+    font-size: 1.5rem;
+  }
+
+  .guide-rule {
+    font-size: 0.7rem;
+    padding: 8px;
+  }
+
+  .target-creature {
+    font-size: 2rem !important;
+  }
+
+  .bonus-target {
+    font-size: 2.5rem !important;
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .stats-sidebar {
+    height: 80px;
+    padding: 8px 15px;
+  }
+
+  .game-arena {
+    height: calc(100vh - 80px);
+  }
+
+  .game-logo h1 {
+    font-size: 0.9rem;
+  }
+
+  .score-card,
+  .stat-item,
+  .control-btn {
+    padding: 4px 8px;
+  }
+
+  .score-value {
+    font-size: 1rem;
+  }
 }

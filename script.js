@@ -334,7 +334,6 @@ class AntSmasherGame {
       }
     };
 
-    // Start spawning ants immediately
     spawnAntsRecursively();
     this.startGameTimer();
 
