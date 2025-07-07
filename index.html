@@ -13,66 +13,120 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="insect-arena-wrapper">
-      <header class="trophy-dashboard">
-        <h1>CYBER ANT SMASHER</h1>
-        <div class="points-display-zone">
-          <div class="metric-card">
-            <span class="info-tag">Score:</span>
-            <span id="current-score">0</span>
+    <div class="game-container">
+      <!-- Left Sidebar with Stats -->
+      <aside class="stats-sidebar">
+        <div class="game-logo">
+          <h1>CYBER<br />ANT<br />SMASHER</h1>
+        </div>
+
+        <div class="score-section">
+          <div class="score-card primary">
+            <div class="score-label">SCORE</div>
+            <div class="score-value" id="current-score">0</div>
           </div>
-          <div class="metric-card">
-            <span class="info-tag">High Score:</span>
-            <span id="high-score">0</span>
+
+          <div class="score-card secondary">
+            <div class="score-label">HIGH SCORE</div>
+            <div class="score-value" id="high-score">0</div>
           </div>
         </div>
-      </header>
 
-      <div class="battlefield-canvas" id="game-area">
-        <div class="welcome-modal" id="game-overlay">
-          <div class="intro-panel">
-            <h2>🤖 CYBER ANT SMASHER</h2>
-            <p>Eliminate digital targets and dominate the neon battlefield!</p>
-            <div class="gameplay-guide">
-              <div class="guide-rule">
-                🎯 Click creatures to eliminate them (+1 point)
+        <div class="game-stats">
+          <div class="stat-item">
+            <span class="stat-icon">⏱️</span>
+            <span class="stat-label">Time</span>
+            <span class="stat-value" id="game-time">0s</span>
+          </div>
+
+          <div class="stat-item">
+            <span class="stat-icon">❌</span>
+            <span class="stat-label">Missed</span>
+            <span class="stat-value" id="missed-ants">0</span>
+          </div>
+        </div>
+
+        <div class="control-buttons">
+          <button class="control-btn primary" id="start-btn">
+            <span class="btn-icon">⚡</span>
+            <span class="btn-text">START BATTLE</span>
+          </button>
+
+          <button class="control-btn secondary" id="pause-btn">
+            <span class="btn-icon">⏸️</span>
+            <span class="btn-text">PAUSE</span>
+          </button>
+
+          <button class="control-btn tertiary" id="restart-btn">
+            <span class="btn-icon">🔄</span>
+            <span class="btn-text">RESET</span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main Game Area -->
+      <main class="game-arena">
+        <div class="battlefield-canvas" id="game-area">
+          <!-- Game overlay modal -->
+          <div class="welcome-modal" id="game-overlay">
+            <div class="intro-panel">
+              <h2>INITIALIZE COMBAT PROTOCOL</h2>
+              <p>Target digital entities and dominate the cyber battlefield!</p>
+
+              <div class="instruction-grid">
+                <div class="instruction-item">
+                  <span class="instruction-icon">🎯</span>
+                  <span class="instruction-text"
+                    >Click to eliminate targets (+1 pt)</span
+                  >
+                </div>
+
+                <div class="instruction-item">
+                  <span class="instruction-icon">⚡</span>
+                  <span class="instruction-text"
+                    >Special targets = Bonus points!</span
+                  >
+                </div>
+
+                <div class="instruction-item">
+                  <span class="instruction-icon">🦗</span>
+                  <span class="instruction-text">Cricket: 3 pts</span>
+                </div>
+
+                <div class="instruction-item">
+                  <span class="instruction-icon">🐛</span>
+                  <span class="instruction-text">Caterpillar: 5 pts</span>
+                </div>
+
+                <div class="instruction-item">
+                  <span class="instruction-icon">🕷️</span>
+                  <span class="instruction-text">Spider: 7 pts</span>
+                </div>
+
+                <div class="instruction-item">
+                  <span class="instruction-icon">🪲</span>
+                  <span class="instruction-text">Beetle: 10 pts</span>
+                </div>
+
+                <div class="instruction-item">
+                  <span class="instruction-icon">⏰</span>
+                  <span class="instruction-text">Targets auto-disappear</span>
+                </div>
+
+                <div class="instruction-item">
+                  <span class="instruction-icon">⌨️</span>
+                  <span class="instruction-text">SPACE = Pause/Resume</span>
+                </div>
               </div>
-              <div class="guide-rule">
-                ⚡ Special targets give bonus points!
-              </div>
-              <div class="guide-rule">
-                🦗 Cricket: 3 pts | 🐛 Caterpillar: 5 pts
-              </div>
-              <div class="guide-rule">🕷️ Spider: 7 pts | 🪲 Beetle: 10 pts</div>
-              <div class="guide-rule">
-                ⏰ Targets disappear after 4-9 seconds
-              </div>
-              <div class="guide-rule">🚀 Game gets faster over time</div>
-              <div class="guide-rule">⌨️ Press Space to pause/resume</div>
+
+              <button class="launch-trigger">INITIALIZE BATTLE PROTOCOL</button>
             </div>
-            <button
-              class="launch-trigger"
-              id="start-btn"
-              aria-label="Start Game"
-            >
-              INITIALIZE BATTLE
-            </button>
           </div>
         </div>
-      </div>
-
-      <div class="action-panel">
-        <button class="command-button" id="restart-btn">🔄 RESET</button>
-        <button class="command-button" id="pause-btn">⏸️ PAUSE</button>
-        <div class="performance-metrics">
-          <span>Time: <span id="game-time">0</span>s</span>
-          <span>Targets Missed: <span id="missed-ants">0</span></span>
-        </div>
-      </div>
+      </main>
     </div>
 
     <div id="sound-container"></div>
-
     <script src="script.js"></script>
   </body>
 </html>
