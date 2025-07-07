@@ -3,13 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>🐜 Ant Smasher Game</title>
+    <title>🤖 CYBER ANT SMASHER - Neon Battle Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="insect-arena-wrapper">
       <header class="trophy-dashboard">
-        <h1>🐜 Ant Smasher</h1>
+        <h1>🤖 CYBER ANT SMASHER</h1>
         <div class="points-display-zone">
           <div class="metric-card">
             <span class="info-tag">Score:</span>
@@ -25,21 +31,21 @@
       <div class="battlefield-canvas" id="game-area">
         <div class="welcome-modal" id="game-overlay">
           <div class="intro-panel">
-            <h2>🐜 Ant Smasher Game</h2>
-            <p>Click the ants to smash them and earn points!</p>
+            <h2>CYBER ANT SMASHER</h2>
+            <p>Eliminate digital targets and dominate the neon battlefield!</p>
             <div class="gameplay-guide">
               <div class="guide-rule">
-                🖱️ Click ants to smash them (+1 point)
+                🎯 Click creatures to eliminate them (+1 point)
               </div>
               <div class="guide-rule">
-                ✨ Special insects give bonus points!
+                ⚡ Special targets give bonus points!
               </div>
               <div class="guide-rule">
                 🦗 Cricket: 3 pts | 🐛 Caterpillar: 5 pts
               </div>
               <div class="guide-rule">🕷️ Spider: 7 pts | 🪲 Beetle: 10 pts</div>
               <div class="guide-rule">
-                ⏰ Insects disappear after 4-9 seconds
+                ⏰ Targets disappear after 4-9 seconds
               </div>
               <div class="guide-rule">🚀 Game gets faster over time</div>
               <div class="guide-rule">⌨️ Press Space to pause/resume</div>
@@ -49,18 +55,18 @@
               id="start-btn"
               aria-label="Start Game"
             >
-              Start Game
+              INITIALIZE BATTLE
             </button>
           </div>
         </div>
       </div>
 
       <div class="action-panel">
-        <button class="command-button" id="restart-btn">🔄 Restart</button>
-        <button class="command-button" id="pause-btn">⏸️ Pause</button>
+        <button class="command-button" id="restart-btn">🔄 RESET</button>
+        <button class="command-button" id="pause-btn">⏸️ PAUSE</button>
         <div class="performance-metrics">
           <span>Time: <span id="game-time">0</span>s</span>
-          <span>Ants Missed: <span id="missed-ants">0</span></span>
+          <span>Targets Missed: <span id="missed-ants">0</span></span>
         </div>
       </div>
     </div>
