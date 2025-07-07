@@ -9,7 +9,6 @@
 
 **A futuristic, cyberpunk-themed ant smashing game with neon aesthetics and modern UI/UX design.**
 
-[🎯 Play Now](#quick-start) • [📖 Features](#features) • [🚀 Installation](#installation) • [🎨 Demo](#demo)
 
 </div>
 
