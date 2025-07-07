@@ -15,28 +15,11 @@
 ---
 
 ## 🌟 Features
+- 🎨 **Cyberpunk Neon Design**
+- 🎮 **Enhanced Gameplay**
+- 🔊 **Modern Audio System**
+- 📱 **Cross-Platform Compatibility**
 
-### 🎨 **Cyberpunk Neon Design**
-- **Modern Sidebar Layout**: Clean, organized interface with glassmorphism effects
-- **Neon Color Palette**: Vibrant cyan, purple, and pink neon lighting
-- **Animated Backgrounds**: Dynamic particle systems and gradient animations
-- **Futuristic Typography**: Orbitron and Exo fonts for that sci-fi feel
-
-### 🎮 **Enhanced Gameplay**
-- **Endless Mode**: No game over - pure, endless ant-smashing action
-- **Dynamic Scoring**: Points system with visual feedback
-- **Responsive Controls**: Smooth click/tap interactions
-- **Visual Effects**: Glowing buttons, hover animations, and smooth transitions
-
-### 🔊 **Modern Audio System**
-- **Web Audio API**: Custom cyberpunk-style sound effects
-- **Interactive Feedback**: Audio cues for actions and interactions
-- **Optimized Performance**: Efficient audio management
-
-### 📱 **Cross-Platform Compatibility**
-- **Responsive Design**: Works on desktop, tablet, and mobile devices
-- **Modern Browser Support**: Optimized for Chrome, Firefox, Safari, and Edge
-- **Touch-Friendly**: Mobile-optimized controls and interface
 
 ---
 
@@ -129,19 +112,13 @@ Then open `http://localhost:8000` in your browser.
 - **Vanilla JavaScript**: Game logic and Web Audio API
 
 
-### Performance
-- **Lightweight**: < 50KB total file size
-- **Fast Loading**: Optimized CSS and JavaScript
-- **Smooth Animations**: 60fps performance target
-- **Memory Efficient**: Clean resource management
-
 ---
 
 ## 🎨 Demo
 
 
 ### Live Demo
-🌐 **[Play the Live Demo](https://UzitheI.github.io/lsp_ant_smasher)**
+🌐 **[Play the Live Demo](https://uzithei.github.io/lsp_ant_smasher.github.io/)**
 
 
 
