@@ -45,113 +45,248 @@ class AntSmasherGame {
       spawn: this.createSpawnSound.bind(this),
       gameStart: this.createGameStartSound.bind(this),
       gameOver: this.createGameOverSound.bind(this),
+      bonus: this.createBonusSound.bind(this),
     };
   }
 
   createSmashSound() {
-    const oscillator = this.audioContext.createOscillator();
+    const oscillator1 = this.audioContext.createOscillator();
+    const oscillator2 = this.audioContext.createOscillator();
     const gainNode = this.audioContext.createGain();
+    const filter = this.audioContext.createBiquadFilter();
 
-    oscillator.connect(gainNode);
+    oscillator1.connect(filter);
+    oscillator2.connect(filter);
+    filter.connect(gainNode);
     gainNode.connect(this.audioContext.destination);
 
-    oscillator.frequency.setValueAtTime(400, this.audioContext.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(
-      200,
-      this.audioContext.currentTime + 0.1
+    oscillator1.frequency.setValueAtTime(800, this.audioContext.currentTime);
+    oscillator1.frequency.exponentialRampToValueAtTime(
+      100,
+      this.audioContext.currentTime + 0.15
     );
 
-    gainNode.gain.setValueAtTime(0.3, this.audioContext.currentTime);
+    oscillator2.frequency.setValueAtTime(1200, this.audioContext.currentTime);
+    oscillator2.frequency.exponentialRampToValueAtTime(
+      150,
+      this.audioContext.currentTime + 0.15
+    );
+
+    filter.type = "lowpass";
+    filter.frequency.setValueAtTime(2000, this.audioContext.currentTime);
+    filter.frequency.exponentialRampToValueAtTime(
+      400,
+      this.audioContext.currentTime + 0.15
+    );
+
+    gainNode.gain.setValueAtTime(0.4, this.audioContext.currentTime);
     gainNode.gain.exponentialRampToValueAtTime(
       0.01,
-      this.audioContext.currentTime + 0.1
+      this.audioContext.currentTime + 0.15
     );
 
-    oscillator.type = "sawtooth";
-    oscillator.start(this.audioContext.currentTime);
-    oscillator.stop(this.audioContext.currentTime + 0.1);
+    oscillator1.type = "square";
+    oscillator2.type = "sawtooth";
+
+    oscillator1.start(this.audioContext.currentTime);
+    oscillator2.start(this.audioContext.currentTime);
+    oscillator1.stop(this.audioContext.currentTime + 0.15);
+    oscillator2.stop(this.audioContext.currentTime + 0.15);
   }
 
   createSpawnSound() {
     const oscillator = this.audioContext.createOscillator();
     const gainNode = this.audioContext.createGain();
+    const filter = this.audioContext.createBiquadFilter();
 
-    oscillator.connect(gainNode);
+    oscillator.connect(filter);
+    filter.connect(gainNode);
     gainNode.connect(this.audioContext.destination);
 
-    oscillator.frequency.setValueAtTime(600, this.audioContext.currentTime);
+    oscillator.frequency.setValueAtTime(200, this.audioContext.currentTime);
     oscillator.frequency.exponentialRampToValueAtTime(
-      800,
-      this.audioContext.currentTime + 0.05
+      600,
+      this.audioContext.currentTime + 0.08
     );
 
-    gainNode.gain.setValueAtTime(0.1, this.audioContext.currentTime);
+    filter.type = "highpass";
+    filter.frequency.setValueAtTime(300, this.audioContext.currentTime);
+    filter.frequency.linearRampToValueAtTime(
+      100,
+      this.audioContext.currentTime + 0.08
+    );
+
+    gainNode.gain.setValueAtTime(0.15, this.audioContext.currentTime);
     gainNode.gain.exponentialRampToValueAtTime(
       0.01,
-      this.audioContext.currentTime + 0.05
+      this.audioContext.currentTime + 0.08
     );
 
-    oscillator.type = "sine";
+    oscillator.type = "square";
     oscillator.start(this.audioContext.currentTime);
-    oscillator.stop(this.audioContext.currentTime + 0.05);
+    oscillator.stop(this.audioContext.currentTime + 0.08);
   }
 
   createGameStartSound() {
-    const frequencies = [523, 659, 784];  
+    const frequencies = [220, 330, 440, 660, 880];
     frequencies.forEach((freq, index) => {
       setTimeout(() => {
         const oscillator = this.audioContext.createOscillator();
         const gainNode = this.audioContext.createGain();
+        const filter = this.audioContext.createBiquadFilter();
 
-        oscillator.connect(gainNode);
+        oscillator.connect(filter);
+        filter.connect(gainNode);
         gainNode.connect(this.audioContext.destination);
 
         oscillator.frequency.setValueAtTime(
           freq,
           this.audioContext.currentTime
         );
-        gainNode.gain.setValueAtTime(0.2, this.audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(
-          0.01,
-          this.audioContext.currentTime + 0.2
+
+        oscillator.frequency.linearRampToValueAtTime(
+          freq * 1.1,
+          this.audioContext.currentTime + 0.1
         );
 
-        oscillator.type = "sine";
+        filter.type = "bandpass";
+        filter.frequency.setValueAtTime(
+          freq * 2,
+          this.audioContext.currentTime
+        );
+        filter.Q.setValueAtTime(5, this.audioContext.currentTime);
+
+        gainNode.gain.setValueAtTime(0.25, this.audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(
+          0.01,
+          this.audioContext.currentTime + 0.25
+        );
+
+        oscillator.type = "sawtooth";
         oscillator.start(this.audioContext.currentTime);
-        oscillator.stop(this.audioContext.currentTime + 0.2);
-      }, index * 100);
+        oscillator.stop(this.audioContext.currentTime + 0.25);
+      }, index * 80);
     });
   }
 
   createGameOverSound() {
-    const frequencies = [400, 350, 300, 250];
+    const frequencies = [880, 660, 440, 220, 110];
+    frequencies.forEach((freq, index) => {
+      setTimeout(() => {
+        const oscillator1 = this.audioContext.createOscillator();
+        const oscillator2 = this.audioContext.createOscillator();
+        const gainNode = this.audioContext.createGain();
+        const filter = this.audioContext.createBiquadFilter();
+
+        oscillator1.connect(filter);
+        oscillator2.connect(filter);
+        filter.connect(gainNode);
+        gainNode.connect(this.audioContext.destination);
+
+        oscillator1.frequency.setValueAtTime(
+          freq,
+          this.audioContext.currentTime
+        );
+        oscillator1.frequency.exponentialRampToValueAtTime(
+          freq * 0.5,
+          this.audioContext.currentTime + 0.4
+        );
+
+        oscillator2.frequency.setValueAtTime(
+          freq * 1.5,
+          this.audioContext.currentTime
+        );
+        oscillator2.frequency.exponentialRampToValueAtTime(
+          freq * 0.75,
+          this.audioContext.currentTime + 0.4
+        );
+
+        filter.type = "lowpass";
+        filter.frequency.setValueAtTime(
+          freq * 3,
+          this.audioContext.currentTime
+        );
+        filter.frequency.exponentialRampToValueAtTime(
+          freq * 0.5,
+          this.audioContext.currentTime + 0.4
+        );
+
+        gainNode.gain.setValueAtTime(0.2, this.audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(
+          0.01,
+          this.audioContext.currentTime + 0.4
+        );
+
+        oscillator1.type = "square";
+        oscillator2.type = "triangle";
+
+        oscillator1.start(this.audioContext.currentTime);
+        oscillator2.start(this.audioContext.currentTime);
+        oscillator1.stop(this.audioContext.currentTime + 0.4);
+        oscillator2.stop(this.audioContext.currentTime + 0.4);
+      }, index * 120);
+    });
+  }
+
+  createBonusSound() {
+    const frequencies = [880, 1320, 1760, 2200];
+
     frequencies.forEach((freq, index) => {
       setTimeout(() => {
         const oscillator = this.audioContext.createOscillator();
         const gainNode = this.audioContext.createGain();
+        const filter = this.audioContext.createBiquadFilter();
 
-        oscillator.connect(gainNode);
+        oscillator.connect(filter);
+        filter.connect(gainNode);
         gainNode.connect(this.audioContext.destination);
 
         oscillator.frequency.setValueAtTime(
           freq,
           this.audioContext.currentTime
         );
-        gainNode.gain.setValueAtTime(0.2, this.audioContext.currentTime);
+
+        const lfo = this.audioContext.createOscillator();
+        const lfoGain = this.audioContext.createGain();
+
+        lfo.frequency.setValueAtTime(8, this.audioContext.currentTime);
+        lfoGain.gain.setValueAtTime(20, this.audioContext.currentTime);
+
+        lfo.connect(lfoGain);
+        lfoGain.connect(oscillator.frequency);
+
+        filter.type = "bandpass";
+        filter.frequency.setValueAtTime(
+          freq * 2,
+          this.audioContext.currentTime
+        );
+        filter.Q.setValueAtTime(3, this.audioContext.currentTime);
+
+        gainNode.gain.setValueAtTime(0.3, this.audioContext.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(
           0.01,
           this.audioContext.currentTime + 0.3
         );
 
-        oscillator.type = "triangle";
+        oscillator.type = "sine";
+        lfo.type = "sine";
+
         oscillator.start(this.audioContext.currentTime);
+        lfo.start(this.audioContext.currentTime);
         oscillator.stop(this.audioContext.currentTime + 0.3);
-      }, index * 150);
+        lfo.stop(this.audioContext.currentTime + 0.3);
+      }, index * 50);
     });
   }
 
   setupEventListeners() {
-    this.startBtn.addEventListener("click", () => this.startGame());
+    const startButtons = document.querySelectorAll(
+      "#start-btn, .launch-trigger"
+    );
+    startButtons.forEach((btn) => {
+      btn.addEventListener("click", () => this.startGame());
+    });
+
     this.restartBtn.addEventListener("click", () => this.restartGame());
     this.pauseBtn.addEventListener("click", () => this.togglePause());
 
@@ -176,11 +311,19 @@ class AntSmasherGame {
   startGame() {
     this.isGameRunning = true;
     this.isPaused = false;
-    clearTimeout(this.antSpawnInterval); // Clear any existing timeouts
+    this.gameTime = 0;
+    this.missedAnts = 0;
+    this.score = 0;
+    this.updateScore();
+    this.updateGameTime();
+    this.updateMissedAnts();
+
+    clearTimeout(this.antSpawnInterval);
     this.gameOverlay.classList.add("invisible");
+    this.gameOverlay.style.display = "none";
+
     this.sounds.gameStart();
 
-    // Start spawning ants
     const spawnAntsRecursively = () => {
       if (!this.isPaused && this.isGameRunning) {
         this.spawnAnt();
@@ -190,12 +333,15 @@ class AntSmasherGame {
         );
       }
     };
-    spawnAntsRecursively();
 
-    // Start game timer
+    // Start spawning ants immediately
+    spawnAntsRecursively();
     this.startGameTimer();
 
-    this.pauseBtn.textContent = "⏸️ Pause";
+    const btnText = this.pauseBtn.querySelector(".btn-text");
+    if (btnText) {
+      btnText.textContent = "PAUSE";
+    }
   }
 
   restartGame() {
@@ -207,10 +353,18 @@ class AntSmasherGame {
     this.updateGameTime();
     this.updateMissedAnts();
     this.clearAllAnts();
+
     this.gameOverlay.classList.remove("invisible");
+    this.gameOverlay.style.display = "flex";
+
     this.isGameRunning = false;
     this.isPaused = false;
-    this.pauseBtn.textContent = "⏸️ Pause";
+
+    const btnText = this.pauseBtn.querySelector(".btn-text");
+    if (btnText) {
+      btnText.textContent = "PAUSE";
+    }
+
     document.body.classList.remove("frozen-state");
   }
 
@@ -218,12 +372,17 @@ class AntSmasherGame {
     if (!this.isGameRunning) return;
 
     this.isPaused = !this.isPaused;
+    const btnText = this.pauseBtn.querySelector(".btn-text");
 
     if (this.isPaused) {
-      this.pauseBtn.textContent = "▶️ Resume";
+      if (btnText) {
+        btnText.textContent = "RESUME";
+      }
       document.body.classList.add("frozen-state");
     } else {
-      this.pauseBtn.textContent = "⏸️ Pause";
+      if (btnText) {
+        btnText.textContent = "PAUSE";
+      }
       document.body.classList.remove("frozen-state");
     }
   }
@@ -253,7 +412,6 @@ class AntSmasherGame {
   }
 
   getSpawnInterval() {
-    // Increase difficulty over time
     const baseInterval = 2000;
     const difficultyReduction = Math.floor(this.gameTime / 10) * 100;
     return Math.max(baseInterval - difficultyReduction, 500);
@@ -347,7 +505,11 @@ class AntSmasherGame {
     this.score += points;
     this.updateScore();
 
-    this.sounds.smash();
+    if (points > 1) {
+      this.sounds.bonus();
+    } else {
+      this.sounds.smash();
+    }
 
     this.createParticleExplosion(ant.offsetLeft + 25, ant.offsetTop + 25);
 
@@ -543,9 +705,12 @@ class AntSmasherGame {
     this.missedAntsEl.textContent = this.missedAnts;
 
     this.missedAntsEl.style.color = "#ff6b6b";
+    this.missedAntsEl.style.textShadow = "0 0 10px rgba(255, 107, 107, 0.5)";
+
     setTimeout(() => {
-      this.missedAntsEl.style.color = "white";
-    }, 500);
+      this.missedAntsEl.style.color = "#39ff14";
+      this.missedAntsEl.style.textShadow = "0 0 10px rgba(57, 255, 20, 0.5)";
+    }, 1000);
   }
 }
 
@@ -556,7 +721,8 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  const game = new AntSmasherGame();
+  window.game = new AntSmasherGame();
+  const game = window.game;
 
   const gameArea = document.getElementById("game-area");
 
@@ -603,7 +769,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.head.appendChild(style);
 
   setTimeout(() => {
-    document.querySelector(".trophy-dashboard h1").style.animation = "none";
+    const logoElement = document.querySelector(".game-logo h1");
+    if (logoElement) {
+      logoElement.style.animation = "none";
+    }
   }, 3000);
 
   console.log("🐜 Ant Smasher Game loaded successfully!");
